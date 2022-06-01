@@ -51,7 +51,23 @@ export default function Navbar({ closed }) {
         <li>
           <NavItem
             value="Create Post"
-            to="/create-post"
+            to="/blog/create-post"
+            Icon={<AiFillFileAdd size={24} />}
+            closed={closed}
+          />
+        </li>
+        <li>
+          <NavItem
+            value="Create Opportunity"
+            to="/opportunity/create-post"
+            Icon={<AiFillFileAdd size={24} />}
+            closed={closed}
+          />
+        </li>
+        <li>
+          <NavItem
+            value="Create News"
+            to="/news/create-post"
             Icon={<AiFillFileAdd size={24} />}
             closed={closed}
           />

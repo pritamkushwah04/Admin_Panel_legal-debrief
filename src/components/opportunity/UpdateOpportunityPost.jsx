@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import ReactLoading from "react-loading";
 import { useParams } from "react-router-dom";
 
-import { getPost, updatePost } from "../api/post";
-import { useNotification } from "../context/NotificationProvider";
-import NotFound from "./NotFound";
-import PostForm from "./PostForm";
+import {
+  getOpportunityPost,
+  updateOpportunityPost,
+} from "../../api/opportunity";
+import { useNotification } from "../../context/NotificationProvider";
+import NotFound from "../NotFound";
+import PostForm from "../PostForm";
 
 export default function UpdatePost() {
   const { slug } = useParams();
@@ -17,7 +20,7 @@ export default function UpdatePost() {
   const { updateNotification } = useNotification();
 
   const fetchPost = async () => {
-    const { error, post } = await getPost(slug);
+    const { error, post } = await getOpportunityPost(slug);
     setFetchingPost(false);
     if (error) {
       setNotFound(true);
@@ -42,7 +45,7 @@ export default function UpdatePost() {
 
   const handleSubmit = async (data) => {
     setUploadingPost(true);
-    const { error, post } = await updatePost(postInfo?.id, data);
+    const { error, post } = await updateOpportunityPost(postInfo?.id, data);
     setUploadingPost(false);
     if (error) return updateNotification("error", error);
     updateNotification("success", "Post updated successfully!");
@@ -51,7 +54,7 @@ export default function UpdatePost() {
       title,
       content,
       thumbnail,
-      tags: tags?.join(", ") || "",
+      tags: tags.join(", "),
       meta,
       featured,
       id,

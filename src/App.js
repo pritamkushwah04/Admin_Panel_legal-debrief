@@ -9,6 +9,12 @@ import PostDetail from "./components/PostDetail";
 import SearchForm from "./components/SearchForm";
 import SearchResults from "./components/SearchResults";
 import UpdatePost from "./components/UpdatePost";
+import UpdateNewsPost from "./components/news/UpdateNewsPost";
+import UpdateOpportunityPost from "./components/opportunity/UpdateOpportunityPost";
+import CreateNewsPost from "./components/news/CreateNewsPost";
+import CreateOpportunityPost from "./components/opportunity/CreateOpportunityPost";
+import PostNewsDetail from "./components/news/PostNewsDetail";
+import PostOpportunityDetail from "./components/opportunity/PostOpportunityDetail";
 
 export default function App() {
   const [closedNav, setClosedNav] = useState(false);
@@ -28,7 +34,7 @@ export default function App() {
         </div>
       </nav>
       <div className="flex-1 bg-gray-100">
-        <div className="sticky top-0">
+        <div className="sticky top-0 bg-gray-100">
           <div className="flex items-center">
             <button
               onClick={toggleNav}
@@ -45,9 +51,34 @@ export default function App() {
         </div>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/create-post" element={<CreatePost />} />
-          <Route path="/update-post/:slug" element={<UpdatePost />} />
-          <Route path="/blog/:slug" element={<PostDetail />} />
+
+          {/* Blog Posts */}
+
+          <Route path="/blog/create-post" element={<CreatePost />} />
+          <Route path="/blog/update-post/:slug" element={<UpdatePost />} />
+          <Route path="/blog/view/:slug" element={<PostDetail />} />
+
+          {/* Opportunity */}
+
+          <Route
+            path="/opportunity/create-post"
+            element={<CreateOpportunityPost />}
+          />
+          <Route
+            path="/opportunity/update-post/:slug"
+            element={<UpdateOpportunityPost />}
+          />
+          <Route
+            path="/opportunity/view/:slug"
+            element={<PostOpportunityDetail />}
+          />
+
+          {/* News */}
+
+          <Route path="/news/create-post" element={<CreateNewsPost />} />
+          <Route path="/news/update-post/:slug" element={<UpdateNewsPost />} />
+          <Route path="/news/view/:slug" element={<PostNewsDetail />} />
+
           <Route path="/search-results" element={<SearchResults />} />
           <Route path="*" element={<NotFound />} />
         </Routes>

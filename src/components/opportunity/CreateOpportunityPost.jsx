@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { uploadPost } from "../api/post";
-import { useNotification } from "../context/NotificationProvider";
-import PostForm, { defaultPost } from "./PostForm";
+import { uploadOpportunityPost } from "../../api/opportunity";
+import { useNotification } from "../../context/NotificationProvider";
+import PostForm, { defaultPost } from "../PostForm";
 
 export default function CreatePost() {
   const [postInfo, setPostInfo] = useState({ ...defaultPost });
@@ -25,7 +25,7 @@ export default function CreatePost() {
 
   const handleSubmit = async (data) => {
     setUploadingPost(true);
-    const { error, post } = await uploadPost(data);
+    const { error, post } = await uploadOpportunityPost(data);
     setUploadingPost(false);
     if (error) return updateNotification("error", error);
     updateNotification("success", "Post created successfully!");
