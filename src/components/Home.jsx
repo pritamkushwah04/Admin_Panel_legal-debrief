@@ -77,11 +77,8 @@ const posts = [
 // let pageNo = 0;
 const perPage = 9;
 const getPaginationCount = (length) => {
-  const division = length / perPage;
-  if (division % 1 !== 0) {
-    return Math.floor(length / perPage) + 1;
-  }
-  return division;
+  const division = Math.floor(length / perPage);
+  return division + (length % perPage) ? 1 : 0;
 };
 
 export default function Home() {
@@ -108,8 +105,8 @@ export default function Home() {
 
   const { updateNotification } = useNotification();
 
-  const paginationCount = getPaginationCount(totalPostCount);
-  const paginations = new Array(paginationCount).fill(" ");
+  // const paginationCount = getPaginationCount(totalPostCount);
+  // const paginations = new Array(paginationCount).fill(" ");
 
   const fetchPosts = async () => {
     const {
@@ -121,10 +118,10 @@ export default function Home() {
     setPosts({
       ...posts,
       data: tempPosts,
-      paginationCount: postCount,
-      // paginations: new Array(getPaginationCount(postCount)).fill(" "),
+      paginationCount: getPaginationCount(tempPosts.length),
+      paginations: new Array(getPaginationCount(tempPosts.length)).fill(" "),
     });
-    // setTotlaPostCount(postCount);
+    console.log(getPaginationCount(tempPosts.length), tempPosts.length);
   };
 
   const fetchNews = async () => {
@@ -135,11 +132,13 @@ export default function Home() {
     } = await getNewsPosts(newsCurrentPage, 9);
     if (error) return updateNotification("error", error);
     setNews({
+      ...news,
       data: tempPosts,
-      paginationCount: postCount,
-      // paginations: new Array(getPaginationCount(postCount)).fill(" "),
+      paginationCount: getPaginationCount(tempPosts.length),
+      paginations: new Array(getPaginationCount(tempPosts.length)).fill(" "),
     });
     // setTotlaPostCount(postCount);
+    console.log(getPaginationCount(tempPosts.length), tempPosts.length);
   };
 
   const fetchOpportunity = async () => {
@@ -150,11 +149,12 @@ export default function Home() {
     } = await getOpportunityPosts(opportunityCurrentPage, 9);
     if (error) return updateNotification("error", error);
     setOpportunity({
+      ...opportunity,
       data: tempPosts,
-      paginationCount: postCount,
-      // paginations: new Array(getPaginationCount(postCount)).fill(" "),
+      paginationCount: getPaginationCount(tempPosts.length),
+      paginations: new Array(getPaginationCount(tempPosts.length)).fill(" "),
     });
-    // setTotlaPostCount(postCount);
+    console.log(getPaginationCount(tempPosts.length), tempPosts.length);
   };
 
   useEffect(() => {

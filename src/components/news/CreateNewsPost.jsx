@@ -20,7 +20,7 @@ export default function CreatePost() {
   };
 
   useEffect(() => {
-    loadPostFromLocalStorage();
+    // loadPostFromLocalStorage();
   }, []);
 
   const handleSubmit = async (data) => {
@@ -29,8 +29,8 @@ export default function CreatePost() {
     setUploadingPost(false);
     if (error) return updateNotification("error", error);
     updateNotification("success", "Post created successfully!");
-
-    navigate("/update-post/" + post.slug);
+    setPostInfo(defaultPost);
+    //navigate("/update-post/" + post.slug);
   };
 
   return (
