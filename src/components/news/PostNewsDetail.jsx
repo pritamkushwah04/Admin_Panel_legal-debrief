@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactLoading from "react-loading";
 
-import { getNewsPosts } from "../../api/news";
+import { getNewsPost } from "../../api/news";
 import { useNotification } from "../../context/NotificationProvider";
 
 export default function PostDetail() {
@@ -14,13 +14,14 @@ export default function PostDetail() {
   const { updateNotification } = useNotification();
 
   const fetchPost = async () => {
-    const { error, post } = await getNewsPosts(slug);
+    const { error, post } = await getNewsPost(slug);
     setFetching(false);
     if (error) {
       return updateNotification("error", error);
     }
 
     const { title, content, thumbnail, tags, meta, id } = post;
+
     setPost({
       title,
       content,
