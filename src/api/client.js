@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: "https://legal-debrief.herokuapp.com/api",
+  baseURL: "https://backend-legal-debrief.onrender.com/api",
 });
 
 export default client;
