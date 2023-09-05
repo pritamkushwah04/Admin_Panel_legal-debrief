@@ -19,7 +19,6 @@ import PostOpportunityDetail from "./components/opportunity/PostOpportunityDetai
 export default function App() {
   const [closedNav, setClosedNav] = useState(false);
   const toggleNav = () => {
-    console.log("clicked");
     setClosedNav(!closedNav);
   };
 
