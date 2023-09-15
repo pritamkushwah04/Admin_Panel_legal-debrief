@@ -41,11 +41,12 @@ export default function NotificationProvider({ children }) {
   };
 
   useEffect(() => {
+    const errorContainer_current=errorContainer.current;
     errorContainer.current?.classList.remove("bottom-14", "opacity-0");
     errorContainer.current?.classList.add("bottom-10", "opacity-1");
     return () => {
-      errorContainer.current?.classList.add("bottom-14", "opacity-0");
-      errorContainer.current?.classList.remove("bottom-10", "opacity-1");
+      errorContainer_current?.classList.add("bottom-14", "opacity-0");
+      errorContainer_current?.classList.remove("bottom-10", "opacity-1");
     };
   }, [notification.value]);
 

@@ -10,11 +10,12 @@ const mdRules = [
 export default function MarkdownHint() {
   const container = useRef();
   useEffect(() => {
+    const container_current=container.current;
     container.current?.classList.remove("opacity-0", "-translate-y-5");
     container.current?.classList.add("opacity-1", "translate-y-0");
     return () => {
-      container.current?.classList.remove("opacity-1", "translate-y-0");
-      container.current?.classList.add("opacity-0", "-translate-y-5");
+      container_current?.classList.remove("opacity-1", "translate-y-0");
+      container_current?.classList.add("opacity-0", "-translate-y-5");
     };
   }, []);
 
@@ -40,6 +41,7 @@ export default function MarkdownHint() {
       </ul>
       <div className="text-center p-2">
         <a
+          rel="noreferrer"
           target="_blank"
           className="text-blue-500"
           href="https://www.markdownguide.org/basic-syntax"

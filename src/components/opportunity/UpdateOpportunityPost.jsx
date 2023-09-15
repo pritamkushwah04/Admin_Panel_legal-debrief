@@ -41,6 +41,7 @@ export default function UpdatePost() {
 
   useEffect(() => {
     fetchPost();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
   const handleSubmit = async (data) => {
